@@ -17,8 +17,15 @@ class QuizAvatar extends StatelessWidget {
       width: size,
       height: size,
       clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(120),
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.red,
+            offset: Offset(4, 4),
+            blurRadius: 64,
+          )
+        ]
       ),
       child: Image.network(
         imageUrl,

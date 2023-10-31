@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pokemon_quiz_flutter/widgets/quiz_avatar.dart';
 import 'package:pokemon_quiz_flutter/widgets/quiz_button.dart';
+import 'package:pokemon_quiz_flutter/widgets/quiz_title.dart';
 
 class PokemonQuiz extends StatefulWidget {
   const PokemonQuiz({super.key});
@@ -26,6 +27,9 @@ class _PokemonQuizState extends State<PokemonQuiz> {
         ),
         body: Column(
           children: [
+            const QuizTitle(
+              title: 'Qual é esse Pokemon?',
+            ),
             Expanded(
               child: Center(
                 child: QuizAvatar(
