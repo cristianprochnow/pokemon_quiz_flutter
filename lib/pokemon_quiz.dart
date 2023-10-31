@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:pokemon_quiz_flutter/widgets/quiz_avatar.dart';
 import 'package:pokemon_quiz_flutter/widgets/quiz_button.dart';
 
 class PokemonQuiz extends StatefulWidget {
@@ -27,28 +28,9 @@ class _PokemonQuizState extends State<PokemonQuiz> {
           children: [
             Expanded(
               child: Center(
-                child: Container(
-                  width: 240,
-                  height: 240,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(120),
-                  ),
-                  child: Image.network(
-                    url,
-                    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                      if (loadingProgress == null) {
-                        return child;
-                      }
-
-                      return const Center(
-                        child: SpinKitSpinningLines(
-                          color: Colors.red,
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                child: QuizAvatar(
+                  imageUrl: url,
+                )
               ),
             ),
             Row(
