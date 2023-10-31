@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class QuizButton extends StatelessWidget {
   final String label;
-  final Function onAction;
+  final VoidCallback onAction;
 
   const QuizButton({
     super.key,
@@ -20,7 +20,7 @@ class QuizButton extends StatelessWidget {
             primary: Colors.red,
             minimumSize: const Size.fromHeight(64), // NEW
           ),
-          onPressed: () => onAction,
+          onPressed: onAction,
           child: Text(
             label,
             style: const TextStyle(

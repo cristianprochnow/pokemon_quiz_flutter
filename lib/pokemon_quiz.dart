@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pokemon_quiz_flutter/widgets/quiz_button.dart';
@@ -54,7 +56,7 @@ class _PokemonQuizState extends State<PokemonQuiz> {
                 QuizButton(
                   label: 'Pokemon 1',
                   onAction: () {
-                    print('show');
+                    log('show');
                   },
                 ),
                 QuizButton(
