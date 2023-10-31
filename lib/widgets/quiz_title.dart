@@ -18,14 +18,7 @@ class QuizTitle extends StatelessWidget {
           style: const TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.bold,
-              color: Colors.red,
-              shadows: [
-                Shadow(
-                  color: Colors.red,
-                  offset: Offset(2, 2),
-                  blurRadius: 64,
-                )
-              ]
+              color: Colors.black54,
           ),
         ),
       ),

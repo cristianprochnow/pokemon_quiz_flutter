@@ -19,10 +19,11 @@ class QuizAvatar extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
+        color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.red,
-            offset: Offset(4, 4),
+            color: Colors.black12,
+            offset: Offset(2, 2),
             blurRadius: 64,
           )
         ]

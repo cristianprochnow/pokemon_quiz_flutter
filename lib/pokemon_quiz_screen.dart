@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:pokemon_quiz_flutter/api/pokeapi.dart';
@@ -15,7 +16,9 @@ class PokemonQuiz extends StatefulWidget {
 }
 
 class _PokemonQuizState extends State<PokemonQuiz> {
-  List<Pokemon> pokemonList = [];
+  List<Pokemon> pokemons = [];
+  List<Pokemon> chosenPokemons = [];
+  int correctPokemonIndex = 0;
 
   @override
   void initState() {
@@ -25,9 +28,36 @@ class _PokemonQuizState extends State<PokemonQuiz> {
   }
 
   void getPokemonData() async {
-    pokemonList = await PokeApi.getPokemonList();
+    if (pokemons.isEmpty) {
+      List<Pokemon> pokemonList = await PokeApi.getPokemonList();
 
-    log(pokemonList.toString());
+      setState(() {
+        pokemons = pokemonList;
+      });
+    }
+
+    choosePokemon();
+  }
+
+  void choosePokemon() {
+    setState(() {
+      chosenPokemons = [];
+
+      correctPokemonIndex = getRandomPokemonIndex();
+      chosenPokemons.add(pokemons[correctPokemonIndex]);
+
+      chosenPokemons.add(pokemons[getRandomPokemonIndex()]);
+      chosenPokemons.add(pokemons[getRandomPokemonIndex()]);
+      chosenPokemons.add(pokemons[getRandomPokemonIndex()]);
+
+      chosenPokemons.shuffle();
+    });
+
+    print(chosenPokemons.toString());
+  }
+
+  int getRandomPokemonIndex() {
+    return Random().nextInt(pokemons.length);
   }
 
   @override
@@ -45,7 +75,7 @@ class _PokemonQuizState extends State<PokemonQuiz> {
             const QuizTitle(
               title: 'Qual é esse Pokemon?',
             ),
-            Expanded(
+            const Expanded(
               child: Center(
                 child: QuizAvatar(
                   imageUrl: '',
@@ -57,7 +87,7 @@ class _PokemonQuizState extends State<PokemonQuiz> {
                 QuizButton(
                   label: 'Pokemon 1',
                   onAction: () {
-                    log('show');
+                    print('show');
                   },
                 ),
                 QuizButton(
