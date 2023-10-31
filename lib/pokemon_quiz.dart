@@ -1,7 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:pokemon_quiz_flutter/api/pokeapi.dart';
+import 'package:pokemon_quiz_flutter/models/pokemon.dart';
 import 'package:pokemon_quiz_flutter/widgets/quiz_avatar.dart';
 import 'package:pokemon_quiz_flutter/widgets/quiz_button.dart';
 import 'package:pokemon_quiz_flutter/widgets/quiz_title.dart';
@@ -14,10 +15,24 @@ class PokemonQuiz extends StatefulWidget {
 }
 
 class _PokemonQuizState extends State<PokemonQuiz> {
+  List<Pokemon> pokemonList = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    getPokemonData();
+  }
+
+  void getPokemonData() async {
+    pokemonList = await PokeApi.getPokemonList();
+
+    log(pokemonList.toString());
+  }
+
   @override
   Widget build(BuildContext context) {
-    Color themeColor = Colors.red;
-    String url = 'https://avatars.githubusercontent.com/u/48127848';
+    const Color themeColor = Colors.red;
 
     return MaterialApp(
       home: Scaffold(
@@ -33,7 +48,7 @@ class _PokemonQuizState extends State<PokemonQuiz> {
             Expanded(
               child: Center(
                 child: QuizAvatar(
-                  imageUrl: url,
+                  imageUrl: '',
                 )
               ),
             ),
