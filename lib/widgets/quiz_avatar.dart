@@ -13,21 +13,9 @@ class QuizAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     const double size = 240;
 
-    return Container(
+    return SizedBox(
       width: size,
       height: size,
-      clipBehavior: Clip.hardEdge,
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            offset: Offset(2, 2),
-            blurRadius: 64,
-          )
-        ]
-      ),
       child: Image.network(
         imageUrl,
         loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {

@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pokemon_quiz_flutter/api/pokeapi.dart';
 import 'package:pokemon_quiz_flutter/models/pokemon.dart';
 import 'package:pokemon_quiz_flutter/widgets/quiz_avatar.dart';
@@ -52,12 +53,22 @@ class _PokemonQuizState extends State<PokemonQuiz> {
 
       chosenPokemons.shuffle();
     });
-
-    print(chosenPokemons.toString());
   }
 
   int getRandomPokemonIndex() {
     return Random().nextInt(pokemons.length);
+  }
+
+  Pokemon getCorrectPokemon() {
+    return pokemons[correctPokemonIndex];
+  }
+
+  String getChosenPokemonName(int index) {
+    if (chosenPokemons.isEmpty) {
+      return '';
+    }
+
+    return chosenPokemons[index].name;
   }
 
   @override
@@ -73,25 +84,30 @@ class _PokemonQuizState extends State<PokemonQuiz> {
         body: Column(
           children: [
             const QuizTitle(
-              title: 'Qual é esse Pokemon?',
+              title: 'Qual é esse Pokémon?',
             ),
-            const Expanded(
+            Expanded(
               child: Center(
-                child: QuizAvatar(
-                  imageUrl: '',
-                )
+                child:
+                  (pokemons.isNotEmpty)
+                    ? QuizAvatar(
+                      imageUrl: getCorrectPokemon().avatarUrl,
+                    )
+                    : const SpinKitSpinningLines(
+                        color: Colors.red,
+                      ),
               ),
             ),
             Row(
               children: [
                 QuizButton(
-                  label: 'Pokemon 1',
+                  label: getChosenPokemonName(0),
                   onAction: () {
                     print('show');
                   },
                 ),
                 QuizButton(
-                  label: 'Pokemon 2',
+                  label: getChosenPokemonName(1),
                   onAction: () {
                     print('show');
                   },
@@ -101,13 +117,13 @@ class _PokemonQuizState extends State<PokemonQuiz> {
             Row(
               children: [
                 QuizButton(
-                  label: 'Pokemon 3',
+                  label: getChosenPokemonName(2),
                   onAction: () {
                     print('show');
                   },
                 ),
                 QuizButton(
-                  label: 'Pokemon 4',
+                  label: getChosenPokemonName(3),
                   onAction: () {
                     print('show');
                   },

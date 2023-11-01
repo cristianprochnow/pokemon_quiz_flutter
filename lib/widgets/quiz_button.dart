@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class QuizButton extends StatelessWidget {
   final String label;
@@ -21,12 +22,17 @@ class QuizButton extends StatelessWidget {
             minimumSize: const Size.fromHeight(64), // NEW
           ),
           onPressed: onAction,
-          child: Text(
-            label,
-            style: const TextStyle(
-              fontSize: 16,
-            ),
-          ),
+          child: (label.isEmpty)
+            ? const SpinKitSpinningLines(
+                color: Colors.white,
+                size: 32,
+              )
+            : Text(
+                label,
+                style: const TextStyle(
+                  fontSize: 16,
+                ),
+              ),
         ),
       ),
     );

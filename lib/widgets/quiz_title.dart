@@ -16,9 +16,12 @@ class QuizTitle extends StatelessWidget {
         child: Text(
           title,
           style: const TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              color: Colors.black54,
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
+            decoration: TextDecoration.underline,
+            decorationColor: Colors.redAccent,
+            decorationStyle: TextDecorationStyle.dotted
           ),
         ),
       ),
